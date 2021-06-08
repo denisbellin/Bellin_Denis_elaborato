@@ -1,10 +1,6 @@
 import 'dart:ui';
-
-import 'package:app_prenotazioni/room_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubit/room_cubit.dart';
 
 class PrenotazioniPage extends StatefulWidget {
   PrenotazioniPage({Key key}) : super(key: key);
