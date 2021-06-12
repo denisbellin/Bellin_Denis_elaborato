@@ -15,3 +15,4 @@ class ListaLoaded extends ListaState{
 }
 
 class ListaFailure extends ListaState{}
+

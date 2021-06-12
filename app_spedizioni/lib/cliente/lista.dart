@@ -1,15 +1,19 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:app_spedizioni/cubit/lista_cubit.dart';
+import 'package:app_spedizioni/ordineModel.dart';
 
-class PrenotazioniPage extends StatefulWidget {
-  PrenotazioniPage({Key key}) : super(key: key);
+class ListaPage extends StatefulWidget {
+  ListaPage({Key key}) : super(key: key);
 
   @override
-  _PrenotazioniPageState createState() => _PrenotazioniPageState();
+  _ListaPageState createState() => _ListaPageState();
 }
 
-class _PrenotazioniPageState extends State<PrenotazioniPage> {
+class _ListaPageState extends State<ListaPage> {
   
   @override
   Widget build(BuildContext context) {
@@ -17,45 +21,50 @@ class _PrenotazioniPageState extends State<PrenotazioniPage> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
        appBar: AppBar(
-              backgroundColor: Colors.grey[800],
-              title: Text(
-                "elenco prenotazioni",
-                style: TextStyle(
-                  color: Colors.orange[800],
-                ),
-                ),
-              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: 
+    Text(
+      'I miei ordini',
+      style: TextStyle(
+        color: Colors.green,
+      ),
+    ),
+  
               
             ),
 
             
        body: Container(
-         child: BlocBuilder <RoomCubit, RoomState>(
+         child: BlocBuilder <ListaCubit, ListaState>(
            builder: (context, state) {
-             if (state is RoomLoading){
+             if (state is ListaLoading){
                return Scaffold(
                   body: Center(
                     child: CircularProgressIndicator()
                   )
                );
-             } else if(state is RoomFailure){
+             } else if(state is ListaFailure){
                return Scaffold(
                   body: Center(
                     child: Text("Errore")
                   )
                );
-             }else if(state is RoomLoaded){
-               return buildPage(state.rooms);
+             }else if(state is ListaLoaded){
+               return buildPage(state.ordini);
                             }
                           },
                         )
                       ),
+                      
+                      
                    );
+                   
                  }
-               
-    Widget buildPage(List<RoomModel> rooms) {
+                          
+    Widget buildPage(List<OrdineModel> ordini) {
       return ListView.builder(
-        itemCount: rooms.length,
+        itemCount: ordini.length,
         itemBuilder: (context, index){
           
         return Card(
@@ -63,11 +72,18 @@ class _PrenotazioniPageState extends State<PrenotazioniPage> {
                       child: ListTile(
                         
                     contentPadding: EdgeInsets.all(8.0),
-                    title: Text(rooms[index].nome),
-                    subtitle: Text(rooms[index].data.toString()),
+                    title: Text(ordini[index].partenza),
+                    subtitle: Text(ordini[index].stato.toString()),
+
                     
                   )
                   );
+                  
       });
+      
+      
+
+
+
     }
-}
+    }

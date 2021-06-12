@@ -1,7 +1,7 @@
 import 'package:app_spedizioni/credenziali/autenticazione.dart';
 import 'package:app_spedizioni/credenziali/registrazione.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -22,7 +22,7 @@ final myController3 = TextEditingController();
 class _MyHomePageState extends State<MyHomePage> {
   
   void initState(){
-    //super.initState();
+    super.initState();
     //$FloordbPrenotazioni
     //.databaseBuilder('dbPrenotazioni.db')
     //.build()
@@ -57,8 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 centerTitle: true,
 ),
+
             
             body: Center(
+              
                
               child: Column(
                 
@@ -152,11 +154,17 @@ centerTitle: true,
                     },
                     
                     ),
+                    
                     ],
+                    
               ),
+              
             ),
+            
+   );
              
-          );
+          
+          
         }
       
         

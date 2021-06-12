@@ -1,6 +1,11 @@
 import 'dart:ui';
 
+import 'package:app_spedizioni/cliente/lista.dart';
+import 'package:app_spedizioni/cubit/listaArticoli_cubit.dart';
+import 'package:app_spedizioni/cubit/lista_cubit.dart';
+import 'package:app_spedizioni/pagine/logged.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 
@@ -18,7 +23,7 @@ final myController2 = TextEditingController();
 
 class _AutenticazionePageState extends State<AutenticazionePage> {
   void initState(){
-    //super.initState();
+    super.initState();
     //$FloordbPrenotazioni
     //.databaseBuilder('dbPrenotazioni.db')
     //.build()
@@ -164,8 +169,13 @@ class _AutenticazionePageState extends State<AutenticazionePage> {
                      ),
                      
                     onPressed: () {
-                        
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> AutenticazionePage(),),);
+                      final listaCubit2 = BlocProvider.of<ListaArticoliCubit>(context);
+                      listaCubit2.getArticoli();
+                      final listaCubit = BlocProvider.of<ListaCubit>(context);
+                      listaCubit.getOrdini();
+                      
+
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyStatefulWidget(),),);
                      
                     },
                     
